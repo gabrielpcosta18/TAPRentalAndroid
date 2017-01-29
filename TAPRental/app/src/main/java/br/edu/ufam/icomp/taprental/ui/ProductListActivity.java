@@ -33,6 +33,12 @@ public class ProductListActivity extends ListActivity {
 
         Toolbar collapsingToolbarLayout = (Toolbar) findViewById(R.id.product_list_toolbar);
         collapsingToolbarLayout.setTitle("TAPRental");
+        collapsingToolbarLayout.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ProductListActivity.this.finish();
+            }
+        });
 
         this.productDAO = new ProductDAO(this);
 

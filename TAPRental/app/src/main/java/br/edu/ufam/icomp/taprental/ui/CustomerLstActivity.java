@@ -60,6 +60,13 @@ public class CustomerLstActivity extends ListActivity {
             }
         });
 
+        collapsingToolbarLayout.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CustomerLstActivity.this.finish();
+            }
+        });
+
     }
 
     public void onListItemClick(ListView l, View v, int pos, long id) {

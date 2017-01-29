@@ -55,6 +55,13 @@ public class EmployeeListActivity extends ListActivity {
                 startActivityForResult(intent, REFRESH_LIST);
             }
         });
+
+        collapsingToolbarLayout.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EmployeeListActivity.this.finish();
+            }
+        });
     }
 
     public void onListItemClick(ListView l, View v, int pos, long id) {

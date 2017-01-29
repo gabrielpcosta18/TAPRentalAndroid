@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,6 +18,16 @@ public class CustomerRegisterActivity extends AppCompatActivity {
     private EditText edtName;
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // handle arrow click here
+        if (item.getItemId() == android.R.id.home) {
+            finish(); // close this activity and return to preview activity (if there is any)
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_register);
@@ -25,6 +36,9 @@ public class CustomerRegisterActivity extends AppCompatActivity {
 
         edtName = (EditText) findViewById(R.id.edtCustomerName);
         Button btnConfirm = (Button) findViewById(R.id.btnCustomerRegisterConfirm);
+
+        this.getSupportActionBar().setHomeButtonEnabled(true);
+        this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         if(intent.hasExtra("customerObj")) {
             this.customer = (Customer) intent.getSerializableExtra("customerObj");
