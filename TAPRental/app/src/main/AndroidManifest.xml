@@ -18,6 +18,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.CustomerListActivity"
+            android:label="@string/title_activity_customer_list"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ui.CustomerLstActivity" />
+        <activity android:name=".ui.CustomerRegisterActivity" />
+        <activity android:name=".ui.EmployeeListActivity" />
+        <activity android:name=".ui.EmployeeRegisterActivity" />
+        <activity android:name=".ui.ProductListActivity" />
+        <activity android:name=".ui.ProductRegisterActivity"></activity>
     </application>
 
 </manifest>

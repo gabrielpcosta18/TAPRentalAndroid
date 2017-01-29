@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/listItemProductTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Título do Filme"/>
+
+    <TextView
+        android:id="@+id/listItemProductDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Preço de Aluguel"/>
+
+    <TextView
+        android:id="@+id/listItemProductRentPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Quantidade em estoque"/>
+</LinearLayout>
