@@ -13,13 +13,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 
+import java.util.List;
+
+import br.edu.ufam.icomp.taprental.adapter.RentListAdapter;
+import br.edu.ufam.icomp.taprental.db.RentalDAO;
 import br.edu.ufam.icomp.taprental.ui.CustomerLstActivity;
 import br.edu.ufam.icomp.taprental.ui.EmployeeListActivity;
 import br.edu.ufam.icomp.taprental.ui.ProductListActivity;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private ListView rentalList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +57,11 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        rentalList = (ListView) findViewById(R.id.rentalList);
+        RentListAdapter adapter = new RentListAdapter(this,
+                R.layout.rental_list_item, new RentalDAO(this).getAllRental());
+        rentalList.setAdapter(adapter);
     }
 
     @Override

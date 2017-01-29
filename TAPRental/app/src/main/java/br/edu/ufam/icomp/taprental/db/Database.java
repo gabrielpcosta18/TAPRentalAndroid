@@ -22,15 +22,16 @@ public class Database extends SQLiteOpenHelper {
 
     private SQLiteDatabase myDataBase;
     private final Context context;
-    private final String DB_PATH;
+    private String DB_PATH;
 
 
     public Database(Context context) {
         super(context, DB_NAME, null, DATABASE_VERSION);
-
-        this.DB_PATH = "/data/data/" + context.getPackageName()  + "/databases/";
         this.context = context;
+
         try {
+            this.DB_PATH = "/data/data/" + context.getPackageName()  + "/databases/";
+
             createDataBase();
         } catch (IOException e) {
             e.printStackTrace();
