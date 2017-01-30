@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import br.edu.ufam.icomp.taprental.model.Employee;
 import br.edu.ufam.icomp.taprental.model.Product;
@@ -29,9 +30,7 @@ public class ProductDAO {
 
         Cursor cursor = this.database.rawQuery(query, null);
         if(cursor.moveToNext()) {
-            Product product = new Product(cursor.getInt(0), cursor.getString(1),
-                    cursor.getString(2), cursor.getString(3), cursor.getInt(4),
-                    cursor.getInt(5), cursor.getFloat(6), cursor.getFloat(7));
+            Product product = cursorToProduct(cursor);
 
             cursor.close();
             return product;
@@ -58,10 +57,28 @@ public class ProductDAO {
         }
     }
 
+    private Product cursorToProduct(Cursor cursor) {
+        return new Product(cursor.getInt(0), cursor.getString(1),
+                cursor.getString(2), cursor.getString(3), cursor.getInt(4),
+                cursor.getInt(5), cursor.getFloat(6), cursor.getFloat(7));
+    }
+
     public Cursor getAllProducts() {
         return this.database.rawQuery("SELECT *" +
         " FROM Product", null);
     }
+
+    public List getAllProductList() {
+        ArrayList<Product> products = new ArrayList<>();
+        Cursor cursor = getAllProducts();
+
+        while(cursor.moveToNext()) {
+            products.add(cursorToProduct(cursor));
+        }
+
+        return products;
+    }
+
 
     public boolean updateProduct(Product product) {
         try {

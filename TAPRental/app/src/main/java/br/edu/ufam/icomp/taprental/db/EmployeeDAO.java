@@ -6,6 +6,9 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.edu.ufam.icomp.taprental.model.Customer;
 import br.edu.ufam.icomp.taprental.model.Employee;
 
@@ -21,12 +24,16 @@ public class EmployeeDAO {
         this.database = (new Database(context)).getWritableDatabase();
     }
 
+    private Employee cursorToEmployee(Cursor cursor) {
+        return new Employee(cursor.getInt(0), cursor.getString(1));
+    }
+
     public Employee getEmployeeById(int id) {
         String query = "SELECT * FROM " + TABLE_NAME + " WHERE _id = " + id;
 
         Cursor cursor = this.database.rawQuery(query, null);
         if(cursor.moveToNext()) {
-            Employee employee = new Employee(cursor.getInt(0), cursor.getString(1));
+            Employee employee = cursorToEmployee(cursor);
 
             cursor.close();
             return employee;
@@ -38,6 +45,17 @@ public class EmployeeDAO {
     public Cursor getAllEmployee() {
         return this.database.rawQuery("SELECT _id, name" +
                 " FROM " + TABLE_NAME, null);
+    }
+
+    public List getAllEmployeeList() {
+        ArrayList<Employee> employees = new ArrayList<>();
+        Cursor cursor = getAllEmployee();
+
+        while(cursor.moveToNext()) {
+            employees.add(cursorToEmployee(cursor));
+        }
+
+        return employees;
     }
 
     public boolean addEmployee(Employee employee) {
