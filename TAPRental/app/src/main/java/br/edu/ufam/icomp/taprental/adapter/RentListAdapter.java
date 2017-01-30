@@ -58,7 +58,7 @@ public class RentListAdapter extends ArrayAdapter<Rental> {
             }
 
             if (txtRentalRemaniningDays != null) {
-                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yy");
+                SimpleDateFormat format = new SimpleDateFormat("yy-MM-dd");
                 Date strDate = null;
                 try {
                     strDate = format.parse(p.getRentDate());
@@ -66,7 +66,8 @@ public class RentListAdapter extends ArrayAdapter<Rental> {
                     long diff = (long)today.getTime() - strDate.getTime();
                     diff = p.getProduct().getMaxPeriodRent() - TimeUnit.MILLISECONDS.toDays(diff);
 
-                    txtRentalRemaniningDays.setText(Long.toString(diff));
+                    Log.d("DIFFFFF", Long.toString(diff));
+                    txtRentalRemaniningDays.setText(Long.toString(diff) + " dia" + (diff > 1? "s restantes": " restante"));
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }

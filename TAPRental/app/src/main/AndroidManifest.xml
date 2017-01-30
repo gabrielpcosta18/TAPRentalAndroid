@@ -27,7 +27,8 @@
         <activity android:name=".ui.EmployeeListActivity" />
         <activity android:name=".ui.EmployeeRegisterActivity" />
         <activity android:name=".ui.ProductListActivity" />
-        <activity android:name=".ui.ProductRegisterActivity"></activity>
+        <activity android:name=".ui.ProductRegisterActivity" />
+        <activity android:name=".ui.RentRegisterActivity"></activity>
     </application>
 
 </manifest>

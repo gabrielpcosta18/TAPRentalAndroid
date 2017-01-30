@@ -13,18 +13,23 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.List;
 
 import br.edu.ufam.icomp.taprental.adapter.RentListAdapter;
 import br.edu.ufam.icomp.taprental.db.RentalDAO;
+import br.edu.ufam.icomp.taprental.model.Rental;
 import br.edu.ufam.icomp.taprental.ui.CustomerLstActivity;
 import br.edu.ufam.icomp.taprental.ui.EmployeeListActivity;
 import br.edu.ufam.icomp.taprental.ui.ProductListActivity;
+import br.edu.ufam.icomp.taprental.ui.RentRegisterActivity;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    private static final int REFRESH_LIST = 1;
 
     private ListView rentalList;
 
@@ -61,7 +66,18 @@ public class MainActivity extends AppCompatActivity
         rentalList = (ListView) findViewById(R.id.rentalList);
         RentListAdapter adapter = new RentListAdapter(this,
                 R.layout.rental_list_item, new RentalDAO(this).getAllRental());
+
         rentalList.setAdapter(adapter);
+        rentalList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Rental rental = (Rental) rentalList.getItemAtPosition(position);
+                Intent intent = new Intent(MainActivity.this, RentRegisterActivity.class);
+                startActivityForResult(intent, REFRESH_LIST);
+
+                Toast.makeText(MainActivity.this.getApplicationContext(), rental.getProduct().getTitle(), Toast.LENGTH_LONG);
+            }
+        });
     }
 
     @Override
