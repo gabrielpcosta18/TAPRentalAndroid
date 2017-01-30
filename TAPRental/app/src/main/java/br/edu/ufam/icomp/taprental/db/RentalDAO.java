@@ -53,7 +53,7 @@ public class RentalDAO {
                     new EmployeeDAO(this.context).getEmployeeById(cursor.getInt(2)),
                     new CustomerDAO(this.context).getCustomerById(cursor.getInt(1)),
                     new ProductDAO(this.context).getProductById(cursor.getInt(4)),
-                    cursor.getString(4)));
+                    cursor.getString(5)));
         }
         return rentals;
     }
