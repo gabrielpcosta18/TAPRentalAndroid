@@ -73,9 +73,8 @@ public class MainActivity extends AppCompatActivity
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Rental rental = (Rental) rentalList.getItemAtPosition(position);
                 Intent intent = new Intent(MainActivity.this, RentRegisterActivity.class);
+                intent.putExtra("rentalObj", rental);
                 startActivityForResult(intent, REFRESH_LIST);
-
-                Toast.makeText(MainActivity.this.getApplicationContext(), rental.getProduct().getTitle(), Toast.LENGTH_LONG);
             }
         });
     }
