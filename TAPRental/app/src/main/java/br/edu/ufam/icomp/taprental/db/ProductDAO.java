@@ -63,14 +63,19 @@ public class ProductDAO {
                 cursor.getInt(5), cursor.getFloat(6), cursor.getFloat(7));
     }
 
-    public Cursor getAllProducts() {
-        return this.database.rawQuery("SELECT *" +
-        " FROM Product", null);
+    public Cursor getAllProducts(boolean filter) {
+        String query = "SELECT *" +
+                " FROM Product";
+
+        if(filter) {
+            query += " as p WHERE p.totalInStock > (SELECT COUNT(_id) FROM Rental WHERE productId = p._id and wasDeveloped = 0)";
+        }
+        return this.database.rawQuery(query, null);
     }
 
-    public List getAllProductList() {
+    public List getAllProductList(boolean filter) {
         ArrayList<Product> products = new ArrayList<>();
-        Cursor cursor = getAllProducts();
+        Cursor cursor = getAllProducts(filter);
 
         while(cursor.moveToNext()) {
             products.add(cursorToProduct(cursor));

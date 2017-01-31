@@ -43,7 +43,7 @@ public class ProductListActivity extends ListActivity {
         this.productDAO = new ProductDAO(this);
 
         this.adapter = new SimpleCursorAdapter(this,
-                R.layout.product_list_item, productDAO.getAllProducts(),
+                R.layout.product_list_item, productDAO.getAllProducts(false),
                 new String[] {"title",
                         "description",
                         "rentPrice",
@@ -90,11 +90,11 @@ public class ProductListActivity extends ListActivity {
         if (requestCode == REFRESH_LIST) {
             if (resultCode == RESULT_OK) {
                 this.productDAO = new ProductDAO(this);
-                Cursor cursor = productDAO.getAllProducts();
+                Cursor cursor = productDAO.getAllProducts(false);
                 Log.d("ACTIVITY RESULT", "RESULT");
 
                 this.adapter = new SimpleCursorAdapter(this,
-                        R.layout.product_list_item, productDAO.getAllProducts(),
+                        R.layout.product_list_item, productDAO.getAllProducts(false),
                         new String[] {"title",
                                 "description",
                                 "rentPrice"},

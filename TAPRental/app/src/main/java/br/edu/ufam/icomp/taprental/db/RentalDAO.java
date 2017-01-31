@@ -78,13 +78,13 @@ public class RentalDAO {
 
     public boolean updateRental(Rental rental) {
         try {
-            /*String sqlCmd = "UPDATE " + TABLE_NAME +
-                    " SET name = '" + employee.getName() + "' "  +
-                    " WHERE _id = " + employee.getId();
+            String sqlCmd = "UPDATE " + TABLE_NAME +
+                    " SET employeerestitutionid = " + rental.getEmployeeRestitution().getId() + ", wasdeveloped = "
+                    + (rental.isWasDeveloped()? "1":"0") +
+                    " WHERE _id = " + rental.getId();
 
             Log.d("SQL", sqlCmd);
-
-            this.database.execSQL(sqlCmd);*/
+            this.database.execSQL(sqlCmd);
             return true;
         }
         catch(SQLException e) {

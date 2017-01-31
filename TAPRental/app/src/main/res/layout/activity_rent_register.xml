@@ -41,21 +41,32 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></Spinner>
 
-    <TextView
+    <LinearLayout
+        android:id="@+id/employeeReceptorContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Funcionário que está recebendo"/>
+        android:orientation="vertical">
 
-    <Spinner
-        android:id="@+id/spnEmployeeReceptor"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"></Spinner>
+        <TextView
+            android:id="@+id/txtEmployeeReceptor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Funcionário que está recebendo"/>
+
+        <Spinner
+            android:id="@+id/spnEmployeeReceptor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></Spinner>
+    </LinearLayout>
+
 
     <LinearLayout
+        android:id="@+id/rentPriceContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:weightSum="1"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:visibility="invisible">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -97,10 +108,12 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/totalPriceContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:weightSum="1"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:visibility="invisible">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -118,7 +131,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:enabled="false"
-                android:hint="Vakir Total"/>
+                android:hint="Valor Total"/>
         </LinearLayout>
 
         <LinearLayout
@@ -127,7 +140,12 @@
             android:layout_weight="0.5"
             android:orientation="vertical">
 
-            <Button
+            <!--Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Notificar Perda"/-->
+            <CheckBox
+                android:id="@+id/checkLost"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="Notificar Perda"/>

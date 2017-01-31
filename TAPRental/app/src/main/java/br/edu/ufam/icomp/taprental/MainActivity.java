@@ -1,9 +1,12 @@
 package br.edu.ufam.icomp.taprental;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.widget.SimpleCursorAdapter;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -20,6 +23,7 @@ import android.widget.Toast;
 import java.util.List;
 
 import br.edu.ufam.icomp.taprental.adapter.RentListAdapter;
+import br.edu.ufam.icomp.taprental.db.ProductDAO;
 import br.edu.ufam.icomp.taprental.db.RentalDAO;
 import br.edu.ufam.icomp.taprental.model.Rental;
 import br.edu.ufam.icomp.taprental.ui.CustomerLstActivity;
@@ -64,6 +68,10 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         rentalList = (ListView) findViewById(R.id.rentalList);
+        fillRentList();
+    }
+
+    private void fillRentList() {
         RentListAdapter adapter = new RentListAdapter(this,
                 R.layout.rental_list_item, new RentalDAO(this).getAllRental());
 
@@ -135,5 +143,14 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REFRESH_LIST) {
+            if (resultCode == RESULT_OK) {
+                fillRentList();
+            }
+        }
     }
 }
