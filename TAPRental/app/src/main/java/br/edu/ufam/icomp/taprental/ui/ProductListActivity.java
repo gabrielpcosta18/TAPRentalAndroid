@@ -46,8 +46,8 @@ public class ProductListActivity extends ListActivity {
                 R.layout.product_list_item, productDAO.getAllProducts(false),
                 new String[] {"title",
                         "description",
-                        "rentPrice",
-                "_id", "maxPeriodRent","totalInStock","productPrice", "type"},
+                        "type",
+                "_id", "maxPeriodRent","totalInStock","productPrice", "rentPrice"},
                 new int[] { R.id.listItemProductTitle,
                         R.id.listItemProductDescription,
                         R.id.listItemProductRentPrice});
@@ -97,7 +97,7 @@ public class ProductListActivity extends ListActivity {
                         R.layout.product_list_item, productDAO.getAllProducts(false),
                         new String[] {"title",
                                 "description",
-                                "rentPrice"},
+                                "type"},
                         new int[] { R.id.listItemProductTitle,
                                 R.id.listItemProductDescription,
                                 R.id.listItemProductRentPrice});

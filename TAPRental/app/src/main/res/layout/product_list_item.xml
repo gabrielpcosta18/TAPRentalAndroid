@@ -2,23 +2,58 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="horizontal"
+    android:paddingBottom="10dp"
+    android:paddingTop="10dp"
+    android:weightSum="1">
 
-    <TextView
-        android:id="@+id/listItemProductTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Título do Filme"/>
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.7"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/listItemProductDescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Preço de Aluguel"/>
+        <TextView
+            android:id="@+id/listItemProductTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Título do Filme"
+            android:textSize="20dp"
+            android:textColor="#000000"
+            android:layout_marginBottom="5dp"/>
 
-    <TextView
-        android:id="@+id/listItemProductRentPrice"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Quantidade em estoque"/>
+        <TextView
+            android:id="@+id/listItemProductDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Preço de Aluguel"
+            android:layout_marginBottom="2dp"
+            android:maxLength="33"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.3"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/listItemProductRentPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="5"
+            android:textAlignment="center"
+            android:textSize="15dp"
+            android:layout_margin="5dp"
+            />
+
+        <!--TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="em estoque"
+            android:textAlignment="center"/-->
+
+    </LinearLayout>
+
 </LinearLayout>

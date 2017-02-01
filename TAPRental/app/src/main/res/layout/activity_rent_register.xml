@@ -14,32 +14,38 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Nome do Cliente"/>
+        android:text="Nome do Cliente"
+        android:layout_marginBottom="2dp"/>
 
     <Spinner
         android:id="@+id/spnCustomer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></Spinner>
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"></Spinner>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Funcionário que está alugando"/>
+        android:text="Funcionário que está alugando"
+        android:layout_marginBottom="2dp"/>
 
     <Spinner
         android:id="@+id/spnEmployee"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></Spinner>
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"></Spinner>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Título"/>
+        android:text="Título"
+        android:layout_marginBottom="2dp"/>
 
     <Spinner
         android:id="@+id/spnTitle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></Spinner>
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"></Spinner>
 
     <LinearLayout
         android:id="@+id/employeeReceptorContainer"
@@ -52,12 +58,14 @@
             android:id="@+id/txtEmployeeReceptor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Funcionário que está recebendo"/>
+            android:text="Funcionário que está recebendo"
+            android:layout_marginBottom="2dp"/>
 
         <Spinner
             android:id="@+id/spnEmployeeReceptor"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"></Spinner>
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"></Spinner>
     </LinearLayout>
 
 
@@ -78,14 +86,16 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Valor do Aluguel"/>
+                android:text="Valor do Aluguel"
+                android:layout_marginBottom="2dp"/>
 
             <EditText
                 android:id="@+id/edtRentPrice"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:enabled="false"
-                android:hint="Preço"/>
+                android:hint="Preço"
+                android:layout_marginBottom="5dp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -97,14 +107,16 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Juros agregado"/>
+                android:text="Juros agregado"
+                android:layout_marginBottom="2dp"/>
 
             <EditText
                 android:id="@+id/edtJuros"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:enabled="false"
-                android:hint="Juros"/>
+                android:hint="Juros"
+                android:layout_marginBottom="5dp"/>
         </LinearLayout>
     </LinearLayout>
 

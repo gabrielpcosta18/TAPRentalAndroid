@@ -75,22 +75,22 @@ public class RentRegisterActivity extends AppCompatActivity {
         this.btnConfirm = (Button) findViewById(R.id.btnRentRegisterConfirm);
 
         CustomSpinnerAdapter customerAdapter = new CustomSpinnerAdapter(this,
-                android.R.layout.simple_spinner_item, new CustomerDAO(this).getAllCustomerList());
+                android.R.layout.simple_list_item_1, new CustomerDAO(this).getAllCustomerList());
 
         this.spnCustomer.setAdapter(customerAdapter);
 
         CustomSpinnerAdapter employeeRecepetorAdapter = new CustomSpinnerAdapter(this,
-                android.R.layout.simple_spinner_item, new EmployeeDAO(this).getAllEmployeeList());
+                android.R.layout.simple_list_item_1, new EmployeeDAO(this).getAllEmployeeList());
 
         this.spnEmployeeReceptor.setAdapter(employeeRecepetorAdapter);
 
         CustomSpinnerAdapter employeeAdapter = new CustomSpinnerAdapter(this,
-                android.R.layout.simple_spinner_item, new EmployeeDAO(this).getAllEmployeeList());
+                android.R.layout.simple_list_item_1, new EmployeeDAO(this).getAllEmployeeList());
 
         this.spnEmployee.setAdapter(employeeAdapter);
 
         CustomSpinnerAdapter productAdapter = new CustomSpinnerAdapter(this,
-                android.R.layout.simple_spinner_item, new ProductDAO(this)
+                android.R.layout.simple_list_item_1, new ProductDAO(this)
                 .getAllProductList(this.rental.getId() == -1));
 
         this.spnProduct.setAdapter(productAdapter);
