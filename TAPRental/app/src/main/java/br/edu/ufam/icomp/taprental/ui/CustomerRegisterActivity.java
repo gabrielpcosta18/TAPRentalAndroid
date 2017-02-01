@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import br.edu.ufam.icomp.taprental.R;
 import br.edu.ufam.icomp.taprental.db.CustomerDAO;
@@ -50,6 +51,11 @@ public class CustomerRegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 CustomerRegisterActivity activity = CustomerRegisterActivity.this;
+                if (activity.edtName.getText().toString().matches("")) {
+                    Toast.makeText(activity, "Preencha todos os campos", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 CustomerDAO customerDAO = new CustomerDAO(activity);
 
                 activity.customer.setName(activity.edtName.getText().toString());

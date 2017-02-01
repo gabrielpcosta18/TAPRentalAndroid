@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import br.edu.ufam.icomp.taprental.R;
 import br.edu.ufam.icomp.taprental.db.CustomerDAO;
@@ -38,6 +39,11 @@ public class EmployeeRegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 EmployeeRegisterActivity activity = EmployeeRegisterActivity.this;
+
+                if (activity.edtName.getText().toString().matches("")) {
+                    Toast.makeText(activity, "Preencha todos os campos", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 EmployeeDAO employeeDAO = new EmployeeDAO(activity);
 
                 activity.employee.setName(activity.edtName.getText().toString());

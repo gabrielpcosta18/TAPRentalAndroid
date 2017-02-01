@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import java.util.Dictionary;
 import java.util.Enumeration;
@@ -55,6 +56,14 @@ public class ProductRegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 ProductRegisterActivity activity = ProductRegisterActivity.this;
+                if (activity.edtTitle.getText().toString().matches("")
+                        || activity.edtMaxRentPeriod.getText().toString().matches("")
+                        || activity.edtTotalInStock.getText().toString().matches("")
+                        || activity.edtPrice.getText().toString().matches("")
+                        || activity.edtRentPrice.getText().toString().matches("")) {
+                    Toast.makeText(activity, "Preencha todos os campos", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 ProductDAO productDAO = new ProductDAO(activity);
 
                 activity.product.setTitle(activity.edtTitle.getText().toString());
