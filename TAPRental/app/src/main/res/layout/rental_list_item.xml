@@ -2,20 +2,26 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="5dp">
 
     <TextView
         android:id="@+id/txtRentalTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Velozes e Furiosos"
-        android:elegantTextHeight="true" />
+        android:elegantTextHeight="true"
+        android:textSize="20dp"
+        android:textColor="#000000"
+        android:layout_marginBottom="2dp"/>
 
     <TextView
         android:id="@+id/txtRentalCustomerName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Gabriel Pereira da Costa"/>
+        android:text="Gabriel Pereira da Costa"
+        android:layout_marginBottom="2dp"/>
+
 
     <TextView
         android:id="@+id/txtRentalRemaniningDays"
