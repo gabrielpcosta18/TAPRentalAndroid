@@ -16,7 +16,16 @@
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_weight="1"
         android:id="@+id/rentalList"></ListView>
+
+    <TextView
+        android:id="@+id/empty"
+        android:text="Sem aluguéis no momento."
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fabRentListAdd"

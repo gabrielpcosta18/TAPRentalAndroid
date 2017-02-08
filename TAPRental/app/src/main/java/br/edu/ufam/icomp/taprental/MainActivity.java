@@ -18,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
@@ -73,6 +74,7 @@ public class MainActivity extends AppCompatActivity
     private void fillRentList() {
         RentListAdapter adapter = new RentListAdapter(this,
                 R.layout.rental_list_item, new RentalDAO(this).getAllRental());
+        rentalList.setEmptyView((TextView)findViewById(R.id.empty));
 
         rentalList.setAdapter(adapter);
         rentalList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
