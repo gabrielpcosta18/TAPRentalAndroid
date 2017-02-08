@@ -44,7 +44,7 @@ public class EmployeeDAO {
 
     public Cursor getAllEmployee() {
         return this.database.rawQuery("SELECT _id, name" +
-                " FROM " + TABLE_NAME, null);
+                " FROM " + TABLE_NAME + " ORDER BY name", null);
     }
 
     public List getAllEmployeeList() {

@@ -70,6 +70,8 @@ public class ProductDAO {
         if(filter) {
             query += " as p WHERE p.totalInStock > (SELECT COUNT(_id) FROM Rental WHERE productId = p._id and wasDeveloped = 0)";
         }
+
+        query += " ORDER BY title";
         return this.database.rawQuery(query, null);
     }
 

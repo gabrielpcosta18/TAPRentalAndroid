@@ -45,7 +45,7 @@ public class CustomerDAO {
 
     public Cursor getAllCustomer() {
         return this.database.rawQuery("SELECT _id, name" +
-                " FROM " + TABLE_NAME, null);
+                " FROM " + TABLE_NAME + " ORDER BY name", null);
     }
 
     public List getAllCustomerList() {
