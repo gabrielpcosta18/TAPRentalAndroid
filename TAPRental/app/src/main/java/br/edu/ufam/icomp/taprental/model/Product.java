@@ -94,7 +94,7 @@ public class Product implements Serializable {
     }
 
     public String toString() {
-        return this.title + "/" + this.type;
+        return this.title + "/" + this.type + " $" + Float.toString(this.getPrice());
     }
 
     @Override
