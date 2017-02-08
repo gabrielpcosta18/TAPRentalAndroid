@@ -14,7 +14,7 @@
         android:id="@+id/edtEmployeeName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Employee's name"/>
+        android:hint="Nome do Funcionário"/>
 
     <Button
         android:id="@+id/btnEmployeeRegisterConfirm"

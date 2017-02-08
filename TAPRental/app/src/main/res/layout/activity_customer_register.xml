@@ -14,7 +14,7 @@
         android:id="@+id/edtCustomerName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Customer's name"/>
+        android:hint="Nome do Cliente"/>
 
     <Button
         android:id="@+id/btnCustomerRegisterConfirm"
