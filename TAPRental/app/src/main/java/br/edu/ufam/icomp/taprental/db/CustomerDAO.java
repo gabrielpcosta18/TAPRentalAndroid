@@ -76,6 +76,30 @@ public class CustomerDAO {
         }
     }
 
+    public boolean isBeingUsed(int id) {
+        String query = "SELECT * FROM Rental WHERE customerId = " + id;
+
+        Cursor cursor = this.database.rawQuery(query, null);
+        return cursor != null && cursor.getCount() > 0;
+    }
+
+    public boolean deleteCustomer(Cursor cursor) {
+        try {
+            if(!isBeingUsed(cursor.getInt(0))) {
+                String sqlCmd = "DELETE FROM " + TABLE_NAME +
+                        " WHERE _id = " + Integer.toString(cursor.getInt(0));
+
+                this.database.execSQL(sqlCmd);
+                return true;
+            }
+            return false;
+        }
+        catch(SQLException e) {
+            Log.e("RentalApp", e.getMessage());
+            return false;
+        }
+    }
+
     public boolean updateCustomer(Customer customer) {
         try {
             String sqlCmd = "UPDATE " + TABLE_NAME +

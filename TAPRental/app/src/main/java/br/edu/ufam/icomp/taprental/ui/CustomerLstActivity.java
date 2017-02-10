@@ -1,17 +1,20 @@
 package br.edu.ufam.icomp.taprental.ui;
 
 import android.app.ListActivity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SimpleCursorAdapter;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -67,6 +70,35 @@ public class CustomerLstActivity extends ListActivity {
             }
         });
 
+        this.getListView().setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                final int pos = position;
+                new AlertDialog.Builder(CustomerLstActivity.this)
+                        .setTitle("Deletar Cliente")
+                        .setMessage("Você tem certeza que deseja deletar o cliente?")
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                Cursor cursor = (Cursor) getListView().getItemAtPosition(pos);
+                                boolean result = new CustomerDAO(CustomerLstActivity.this).deleteCustomer(cursor);
+
+                                if(result)
+                                    fillList();
+                                else Toast.makeText(CustomerLstActivity.this,
+                                        "Cliente não pode ser deletado", Toast.LENGTH_LONG).show();
+                            }
+                        })
+                        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // do nothing
+                            }
+                        })
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
+
+                return true;
+            }
+        });
     }
 
     public void onListItemClick(ListView l, View v, int pos, long id) {
@@ -84,19 +116,23 @@ public class CustomerLstActivity extends ListActivity {
         startActivityForResult(intent, REFRESH_LIST);
     }
 
+    private void fillList() {
+        this.customerDAO = new CustomerDAO(this);
+        Cursor cursor = customerDAO.getAllCustomer();
+        Log.d("ACTIVITY RESULT", "RESULT");
+
+        this.adapter = new SimpleCursorAdapter(this,
+                R.layout.customer_list_item, cursor,
+                new String[] {"name"}, new int[] { R.id.listItemCustomerName});
+
+        this.setListAdapter(adapter);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REFRESH_LIST) {
             if (resultCode == RESULT_OK) {
-                this.customerDAO = new CustomerDAO(this);
-                Cursor cursor = customerDAO.getAllCustomer();
-                Log.d("ACTIVITY RESULT", "RESULT");
-
-                this.adapter = new SimpleCursorAdapter(this,
-                        R.layout.customer_list_item, cursor,
-                        new String[] {"name"}, new int[] { R.id.listItemCustomerName});
-
-                this.setListAdapter(adapter);
+                fillList();
             }
         }
     }

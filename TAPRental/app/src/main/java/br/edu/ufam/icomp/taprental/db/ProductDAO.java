@@ -39,6 +39,30 @@ public class ProductDAO {
         return null;
     }
 
+    public boolean isBeingUsed(int id) {
+        String query = "SELECT * FROM Rental WHERE productId = " + id;
+
+        Cursor cursor = this.database.rawQuery(query, null);
+        return cursor != null && cursor.getCount() > 0;
+    }
+
+    public boolean deleteProduct(Cursor cursor) {
+        try {
+            if(!isBeingUsed(cursor.getInt(0))) {
+                String sqlCmd = "DELETE FROM " + TABLE_NAME +
+                        " WHERE _id = " + Integer.toString(cursor.getInt(0));
+
+                this.database.execSQL(sqlCmd);
+                return true;
+            }
+            return false;
+        }
+        catch(SQLException e) {
+            Log.e("RentalApp", e.getMessage());
+            return false;
+        }
+    }
+
     public boolean addProduct(Product product) {
         try {
             String sqlCmd = "INSERT INTO " + TABLE_NAME +

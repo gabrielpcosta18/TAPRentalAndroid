@@ -47,6 +47,30 @@ public class EmployeeDAO {
                 " FROM " + TABLE_NAME + " ORDER BY name", null);
     }
 
+    public boolean isBeingUsed(int id) {
+        String query = "SELECT * FROM Rental WHERE employeeRentId = " + id + " or employeeRestitutionId = " + id;
+
+        Cursor cursor = this.database.rawQuery(query, null);
+        return cursor != null && cursor.getCount() > 0;
+    }
+
+    public boolean deleteEmployee(Cursor cursor) {
+        try {
+            if(!isBeingUsed(cursor.getInt(0))) {
+                String sqlCmd = "DELETE FROM " + TABLE_NAME +
+                        " WHERE _id = " + Integer.toString(cursor.getInt(0));
+
+                this.database.execSQL(sqlCmd);
+                return true;
+            }
+            return false;
+        }
+        catch(SQLException e) {
+            Log.e("RentalApp", e.getMessage());
+            return false;
+        }
+    }
+
     public List getAllEmployeeList() {
         ArrayList<Employee> employees = new ArrayList<>();
         Cursor cursor = getAllEmployee();
